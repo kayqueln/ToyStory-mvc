@@ -32,14 +32,14 @@
         font-size: 1.2em;
         border-radius: 5px;
         text-align: center;
-        width: 150px;
+        width: 135px;
+        margin-left: auto;
     }
 
     .cards-container {
         display: flex;
         flex-direction: column;
         gap: 20px;
-        align-items: center;
     }
 
     .card {
@@ -51,15 +51,21 @@
         max-width: 600px;
         text-align: left;
         display: flex;
-        flex-direction: column;
-        align-items: center;
+        flex-direction: row;
+        gap: 20px;
     }
 
     .card-image {
-        width: 100%;
+        width: 200px;
         height: auto;
         border-radius: 8px;
-        margin-bottom: 15px;
+    }
+
+    .card-content {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
     }
 
     .card h2 {
@@ -77,13 +83,13 @@
 
     .card-buttons {
         display: flex;
-        justify-content: space-between;
-        width: 100%;
+        justify-content: end;
+        gap: 10px;
         margin-top: 10px;
     }
 
     .btn {
-        padding: 10px 15px;
+        padding: 8px 20px;
         background-color: #ff6347;
         color: white;
         border: none;
@@ -97,26 +103,28 @@
     .btn:hover {
         background-color: #e5533d;
     }
-
 </style>
 
 <body>
 <div th:replace="~{base :: header}"></div>
 
 <div class="container">
-    <a href="/brinquedo/cadastro" class="novo-botao">Novo Brinquedo</a>
+    <a href="/brinquedo/novo" class="novo-botao">Cadastrar</a>
 
     <section class="cards-container">
         <div th:each="brinquedo : ${brinquedos}" class="card">
             <img th:src="@{${brinquedo.imagemUrl}}" alt="Imagem do brinquedo" class="card-image">
-            <h2 th:text="${brinquedo.nome}">Nome do Brinquedo</h2>
-            <p><strong>Tipo:</strong> <span th:text="${brinquedo.tipo}">Tipo do Brinquedo</span></p>
-            <p><strong>Classificação:</strong> <span th:text="${brinquedo.classificacao}">Classificação</span></p>
-            <p><strong>Preço:</strong> R$ <span th:text="${brinquedo.preco}">Preço</span></p>
-
-            <div class="card-buttons">
-                <a th:href="@{/brinquedos/editar/{id}(id=${brinquedo.id})}" class="btn">Editar</a>
-                <a th:href="@{/brinquedos/excluir/{id}(id=${brinquedo.id})}" class="btn" onclick="return confirm('Tem certeza que deseja excluir este brinquedo?');">Excluir</a>
+            <div class="card-content">
+                <div>
+                    <h2 th:text="${brinquedo.nome}">Nome do Brinquedo</h2>
+                    <p><strong>Tipo:</strong> <span th:text="${brinquedo.tipo}">Tipo do Brinquedo</span></p>
+                    <p><strong>Classificação:</strong> <span th:text="${brinquedo.classificacao}">Classificação</span></p>
+                    <p><strong>Preço:</strong> R$ <span th:text="${brinquedo.preco}">Preço</span></p>
+                </div>
+                <div class="card-buttons">
+                    <a th:href="@{'/brinquedos/editar/' + ${brinquedo.id}}" class="btn">Editar</a>
+                    <a th:href="@{'/brinquedos/excluir/' + ${brinquedo.id}}" class="btn">Excluir</a>
+                </div>
             </div>
         </div>
     </section>

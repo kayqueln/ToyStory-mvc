@@ -42,7 +42,7 @@ public class BrinquedoController {
         return "brinquedo/admin-brinquedos";
     }
 
-    @GetMapping("/cadastro")
+    @GetMapping("/novo")
     public String formulario(CadastroBrinquedoDTO cadastroBrinquedoDTO){
         return "/brinquedo/cadastro-brinquedo";
     }
