@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.w3.org/1999/xhtml">
+<head th:replace="~{base :: head}"></head>
+<style>
+    body {
+        font-family: 'Arial', sans-serif;
+        background-color: #f4f4f9;
+        margin: 0;
+        padding: 0;
+    }
+
+    header {
+        background-color: #ffcc00;
+        padding: 20px;
+        text-align: center;
+        box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    .container {
+        width: 80%;
+        margin: 0 auto;
+        padding: 20px;
+    }
+
+    .form-container {
+        background: white;
+        border-radius: 8px;
+        box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+        padding: 20px;
+        max-width: 600px;
+        margin: 0 auto;
+    }
+
+    .form-container h2 {
+        text-align: center;
+        margin-bottom: 20px;
+        font-size: 1.8em;
+    }
+
+    .form-group {
+        margin-bottom: 15px;
+    }
+
+    .form-group label {
+        display: block;
+        font-weight: bold;
+        margin-bottom: 5px;
+    }
+
+    .form-group input,
+    .form-group select {
+        width: 100%;
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        font-size: 1em;
+    }
+
+    .form-group textarea {
+        width: 100%;
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        font-size: 1em;
+        resize: vertical;
+    }
+
+    .form-actions {
+        text-align: center;
+        margin-top: 20px;
+    }
+
+    .btn {
+        padding: 10px 20px;
+        background-color: #ff6347;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        font-size: 1.2em;
+        text-decoration: none;
+    }
+
+    .btn:hover {
+        background-color: #e5533d;
+    }
+
+    .btn-cancel {
+        background-color: #ccc;
+        margin-left: 10px;
+    }
+
+    .btn-cancel:hover {
+        background-color: #bbb;
+    }
+</style>
+
+<body>
+<div th:replace="~{base :: header}"></div>
+
+<div class="container">
+    <div class="form-container">
+        <h2>Cadastrar Novo Brinquedo</h2>
+        <form th:object="${cadastroBrinquedoDTO}" th:action="@{/brinquedo/salvar}" method="post">
+            <div class="form-group">
+                <label for="nomeBrinquedo">Nome do Brinquedo</label>
+                <input type="text" id="nomeBrinquedo" name="nomeBrinquedo" th:field="*{nomeBrinquedo}" required>
+            </div>
+
+            <div class="form-group">
+                <label for="tipoBrinquedo">Tipo do Brinquedo</label>
+                <input type="text" id="tipoBrinquedo" name="tipoBrinquedo" th:field="*{tipoBrinquedo}" required>
+            </div>
+
+            <div class="form-group">
+                <label for="classificacaoBrinquedo">Classificação</label>
+                <input type="text" id="classificacaoBrinquedo" name="classificacaoBrinquedo" th:field="*{classificacaoBrinquedo}" required>
+            </div>
+
+            <div class="form-group">
+                <label for="preco">Preço (R$)</label>
+                <input type="number" step="0.01" id="preco" name="preco" th:field="*{preco}" required>
+            </div>
+
+            <div class="form-group">
+                <label for="imagemUrlBrinquedo">URL da Imagem</label>
+                <input type="text" id="imagemUrlBrinquedo" name="imagemUrlBrinquedo" th:field="*{imagemUrlBrinquedo}" required>
+            </div>
+
+            <div class="form-actions">
+                <button type="submit" class="btn">Salvar</button>
+                <a href="/" class="btn btn-cancel">Cancelar</a>
+            </div>
+        </form>
+    </div>
+</div>
+
+</body>
+</html>

@@ -5,9 +5,11 @@ import br.com.fiap.ToyStory_mvc.model.Brinquedo;
 import br.com.fiap.ToyStory_mvc.repository.BrinquedoRepository;
 import br.com.fiap.ToyStory_mvc.utils.ToyStoryServices;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+@Service
 public class BrinquedoService implements ToyStoryServices<Brinquedo, CadastroBrinquedoDTO> {
 
     @Autowired
@@ -16,12 +18,14 @@ public class BrinquedoService implements ToyStoryServices<Brinquedo, CadastroBri
 
     @Override
     public Brinquedo cadastrar(CadastroBrinquedoDTO cadastroBrinquedoDTO) throws Exception {
-        return null;
+        Brinquedo brinquedo = new Brinquedo(cadastroBrinquedoDTO);
+        brinquedoRepository.save(brinquedo);
+        return brinquedo;
     }
 
     @Override
     public List<Brinquedo> listar() {
-        return null;
+        return brinquedoRepository.findAll();
     }
 
     @Override
@@ -32,5 +36,9 @@ public class BrinquedoService implements ToyStoryServices<Brinquedo, CadastroBri
     @Override
     public void deletar(Long id) {
 
+    }
+
+    public List<Brinquedo> listarOrdenado() {
+        return brinquedoRepository.findAllByOrderByDataCadastroDesc();
     }
 }

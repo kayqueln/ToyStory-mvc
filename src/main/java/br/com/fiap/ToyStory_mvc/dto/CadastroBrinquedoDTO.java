@@ -10,9 +10,10 @@ public record CadastroBrinquedoDTO(
         String tipoBrinquedo,
         @NotBlank
         String classificacaoBrinquedo,
-        Float tamanhoBrinquedo,
         @NotNull
-        Float preco
+        Float preco,
+        @NotBlank
+        String imagemUrlBrinquedo
 
 ) {
 }
