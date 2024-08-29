@@ -26,4 +26,9 @@ public class HomeController {
         return "home";
     }
 
+    @GetMapping("/contato")
+    public String paginaContato(Model model){
+        return "contato";
+    }
+
 }

@@ -97,6 +97,19 @@
         .href-logo:hover {
             text-decoration: none;
         }
+
+
+        footer {
+            text-align: center;
+            padding: 20px;
+            background-color: #ffcc00;
+            box-shadow: 0px -4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        footer p {
+            margin: 0;
+            color: #666;
+        }
     </style>
 </head>
 <body>
@@ -116,11 +129,15 @@
                     <li><a href="/">Início</a></li>
                     <li><a href="/brinquedo">Brinquedos</a></li>
                     <li><a href="/brinquedo/lancamentos">Lançamentos</a></li>
-                    <li><a href="#">Contato</a></li>
+                    <li><a href="/contato">Contato</a></li>
                     <li><a href="/brinquedo/admin">Administrador</a></li>
                 </ul>
             </nav>
 
     </div>
+
+    <footer th:fragment="footer">
+        <p>&copy; 2024 Meu Site. Todos os direitos reservados.</p>
+    </footer>
 </body>
 </html>
