@@ -29,7 +29,7 @@
         box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
         margin: 10px;
         padding: 20px;
-        width: 250px;
+        width: 300px;
         text-align: left;
     }
 
@@ -63,7 +63,7 @@
         <img th:src="@{${brinquedo.imagemUrl}}" alt="Imagem do brinquedo" class="card-image">
         <h2 th:text="${brinquedo.nome}">Nome do Brinquedo</h2>
         <p><strong>Tipo:</strong> <span th:text="${brinquedo.tipo}">Tipo do Brinquedo</span></p>
-        <p><strong>Classificação:</strong> <span th:text="${brinquedo.classificacao}">Classificação</span></p>
+        <p><strong>Classificação:</strong> <span th:text="'A partir de ' + ${brinquedo.classificacao} + ' anos'">Classificação</span></p>
         <p><strong>Preço:</strong> R$ <span th:text="${brinquedo.preco}">Preço</span></p>
     </div>
 </section>

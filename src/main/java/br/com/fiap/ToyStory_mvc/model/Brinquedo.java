@@ -1,11 +1,13 @@
 package br.com.fiap.ToyStory_mvc.model;
 
+import br.com.fiap.ToyStory_mvc.dto.AlterarBrinquedoDTO;
 import br.com.fiap.ToyStory_mvc.dto.CadastroBrinquedoDTO;
 import jakarta.persistence.*;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 @Data
 @NoArgsConstructor
@@ -17,10 +19,10 @@ public class Brinquedo {
     private Long id;
     private String nome;
     private String tipo;
-    private String classificacao;
+    private Integer classificacao;
     private Float preco;
     private String imagemUrl;
-    private LocalDate dataCadastro;
+    private LocalDateTime dataCadastro;
 
     public Brinquedo(CadastroBrinquedoDTO cadastroBrinquedoDTO) {
         this.nome = cadastroBrinquedoDTO.nomeBrinquedo();
@@ -28,14 +30,14 @@ public class Brinquedo {
         this.classificacao = cadastroBrinquedoDTO.classificacaoBrinquedo();
         this.preco = cadastroBrinquedoDTO.preco();
         this.imagemUrl = cadastroBrinquedoDTO.imagemUrlBrinquedo();
-        this.dataCadastro = LocalDate.now();
+        this.dataCadastro = LocalDateTime.now();
     }
 
-    public void alterar(Brinquedo brinquedo) {
-        this.nome = brinquedo.getNome();
-        this.tipo = brinquedo.getTipo();
-        this.classificacao = brinquedo.getClassificacao();
-        this.preco = brinquedo.getPreco();
-        this.imagemUrl = brinquedo.getImagemUrl();
+    public void alterar(AlterarBrinquedoDTO alterarBrinquedoDTO) {
+        if(alterarBrinquedoDTO.nomeBrinquedo() != null) this.nome = alterarBrinquedoDTO.nomeBrinquedo();
+        if(alterarBrinquedoDTO.tipoBrinquedo() != null) this.tipo = alterarBrinquedoDTO.tipoBrinquedo();
+        if(alterarBrinquedoDTO.classificacaoBrinquedo() != null) this.classificacao = alterarBrinquedoDTO.classificacaoBrinquedo();
+        if(alterarBrinquedoDTO.preco() != null) this.preco = alterarBrinquedoDTO.preco();
+        if(alterarBrinquedoDTO.imagemUrlBrinquedo() != null) this.imagemUrl = alterarBrinquedoDTO.imagemUrlBrinquedo();
     }
 }

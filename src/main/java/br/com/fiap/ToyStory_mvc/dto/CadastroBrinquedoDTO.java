@@ -8,8 +8,8 @@ public record CadastroBrinquedoDTO(
         String nomeBrinquedo,
         @NotNull
         String tipoBrinquedo,
-        @NotBlank
-        String classificacaoBrinquedo,
+        @NotNull
+        Integer classificacaoBrinquedo,
         @NotNull
         Float preco,
         @NotBlank
