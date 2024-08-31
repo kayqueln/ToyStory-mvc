@@ -43,7 +43,7 @@ public class BrinquedoController {
 
     @GetMapping("/novo")
     public String formulario(CadastroBrinquedoDTO cadastroBrinquedoDTO){
-        return "/brinquedo/cadastro-brinquedo";
+        return "brinquedo/cadastro-brinquedo";
     }
 
     @Transactional
@@ -66,7 +66,7 @@ public class BrinquedoController {
                 brinquedo.getImagemUrl()
         );
         model.addAttribute("alterarBrinquedoDTO", alterarBrinquedoDTO);
-        return "/brinquedo/altera-brinquedo";
+        return "brinquedo/altera-brinquedo";
     }
 
     @Transactional
