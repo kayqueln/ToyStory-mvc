@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Cadastro - Toy Story</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f9f9f9;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .register-container {
+            background-color: white;
+            border-radius: 10px;
+            padding: 40px;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+            max-width: 400px;
+            width: 100%;
+        }
+
+        h2 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+        }
+
+        label {
+            color: #333;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+
+        input[type="text"],
+        input[type="email"],
+        input[type="password"] {
+            padding: 10px;
+            border: 2px solid #ccc;
+            border-radius: 5px;
+            margin-bottom: 15px;
+            font-size: 16px;
+        }
+
+        input[type="text"]:focus,
+        input[type="email"]:focus,
+        input[type="password"]:focus {
+            border-color: #ffcc00;
+            outline: none;
+        }
+
+        button {
+            background-color: #ff6347;
+            color: white;
+            padding: 12px;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        button:hover {
+            background-color: #ff4500;
+        }
+
+        .error-message {
+            color: #ff6347;
+            text-align: center;
+            margin-bottom: 10px;
+        }
+
+        .footer {
+            text-align: center;
+            margin-top: 15px;
+        }
+
+        .footer a {
+            color: #ffcc00;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .footer a:hover {
+            color: #ff6347;
+        }
+
+        @media (max-width: 600px) {
+            .register-container {
+                padding: 30px;
+            }
+
+            button {
+                padding: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+<div class="register-container">
+    <h2>Cadastro - Toy Story</h2>
+    <form th:object="${cadastroUsuarioDTO}" th:action="@{/usuario/cadastro}" method="post" >
+        <label for="fullname">Nome Completo:</label>
+        <input type="text" id="fullname" name="fullname" placeholder="Digite seu nome completo" th:field="*{nome}" required/>
+
+        <label for="email">E-mail:</label>
+        <input type="email" id="email" name="email" placeholder="Digite seu e-mail" th:field="*{email}" required/>
+
+        <label for="password">Senha:</label>
+        <input type="password" id="password" name="password" placeholder="Digite sua senha" th:field="*{senha}" required/>
+
+        <button type="submit">Cadastrar</button>
+
+        <div class="error-message" th:if="${param.error}">
+            <p>Ocorreu um erro no cadastro. Tente novamente.</p>
+        </div>
+    </form>
+
+    <div class="footer">
+        <p>Já tem uma conta? <a th:href="@{/login}">Faça login</a></p>
+    </div>
+</div>
+</body>
+</html>

@@ -1,7 +1,8 @@
-<html lang="pt-br" xmlns:th="http://www.w3.org/1999/xhtml">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head th:fragment="head">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-ChzDzmAAZJA<ctrl61>nU483mk10C70E94t3352Y5A2e49aHKEvGGD3TGlezPh51mWNBsbtE1hC" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <title>ToyStory</title>
     <style>
         * {
@@ -31,32 +32,21 @@
             text-shadow: 2px 2px #fff;
         }
 
-        .search-bar {
-            display: flex;
-            align-items: center;
+        .user-bar {
+          display: flex;
+          align-items: center;
+          padding: 10px;
+          border-radius: 5px;
+          font-size: 19px;
         }
 
-        .search-bar input {
-            padding: 8.5px;
-            font-size: 1em;
-            border: 2px solid #ff6347;
-            border-radius: 5px 0 0 5px;
-            outline: none;
+        .fa-user {
+          margin-right: 10px;
+          color: #333;
         }
 
-        .search-bar button {
-            padding: 10px 15px;
-            font-size: 1em;
-            background-color: #ff6347;
-            color: white;
-            border: none;
-            border-radius: 0 5px 5px 0;
-            cursor: pointer;
-            transition: background-color 0.3s;
-        }
-
-        .search-bar button:hover {
-            background-color: #e5533d;
+        .user-name {
+          font-weight: bold;
         }
 
         nav.submenu {
@@ -113,31 +103,40 @@
     </style>
 </head>
 <body>
-    <div th:fragment="header">
-        <header>
-            <div class="logo">
-                <a href="/" class="href-logo"><h1>ToyStory</h1></a>
-            </div>
-            <div class="search-bar">
-                <input type="text" placeholder="Buscar brinquedos...">
-                <button type="button">Buscar</button>
-            </div>
-        </header>
+<div th:fragment="header">
+    <header>
+        <div class="logo">
+            <a href="/" class="href-logo"><h1>ToyStory</h1></a>
+        </div>
+        <div class="user-bar">
+            <i class="fa-solid fa-user"></i>
+            <span class="user-name" sec:authorize="isAuthenticated()">
+                <span th:text="${authentication}">Nome do Usuário</span>
+            </span>
+                <span sec:authorize="!isAuthenticated()" th:if="${authentication == null}">
+                <a href="/login">Entrar</a>
+            </span>
+        </div>
+    </header>
+    <nav class="submenu">
+        <ul class="submenu-ul">
+            <li><a href="/">Início</a></li>
+            <li><a href="/brinquedo">Brinquedos</a></li>
+            <li><a href="/brinquedo/lancamentos">Lançamentos</a></li>
+            <li><a href="/contato">Contato</a></li>
+            <span sec:authorize="isAuthenticated()" th:if="${authenticationAdmin != null}">
+                <li sec:authorize="isAuthenticated()"><a href="/admin">Administrador</a></li>
+            </span>
+            <span sec:authorize="isAuthenticated()" th:if="${authenticationUser != null}">
+                <li sec:authorize="isAuthenticated()"><a href="/compras">Minhas compras</a></li>
+            </span>
+        </ul>
+    </nav>
+</div>
 
-            <nav class="submenu">
-                <ul class="submenu-ul">
-                    <li><a href="/">Início</a></li>
-                    <li><a href="/brinquedo">Brinquedos</a></li>
-                    <li><a href="/brinquedo/lancamentos">Lançamentos</a></li>
-                    <li><a href="/contato">Contato</a></li>
-                    <li><a href="/brinquedo/admin">Administrador</a></li>
-                </ul>
-            </nav>
-
-    </div>
-
-    <footer th:fragment="footer">
-        <p>&copy; 2024 Meu Site. Todos os direitos reservados.</p>
-    </footer>
+<footer th:fragment="footer">
+    <p>&copy; 2024 ToyStory. Todos os direitos reservados.</p>
+</footer>
 </body>
+</html>
 </html>

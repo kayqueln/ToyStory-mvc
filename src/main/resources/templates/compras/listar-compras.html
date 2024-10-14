@@ -2,59 +2,6 @@
 <html xmlns:th="http://www.w3.org/1999/xhtml">
 <head th:replace="~{base :: head}"></head>
 <style>
-    .banner {
-        background-image: url('https://modobrincar.rihappy.com.br/wp-content/uploads/2022/01/brinquedos-colecionaveis-980x500.jpeg');
-        height: 400px;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        color: white;
-        text-align: center;
-        position: relative;
-    }
-
-    .banner::before {
-        content: '';
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background: rgba(0, 0, 0, 0.4);
-    }
-
-    .banner-content {
-        position: relative;
-        z-index: 1;
-    }
-
-    .banner h2 {
-        font-size: 3em;
-        margin-bottom: 10px;
-        text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
-    }
-
-    .banner p {
-        font-size: 1.5em;
-        margin-bottom: 20px;
-        text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
-    }
-
-    .btn-banner {
-        display: inline-block;
-        padding: 15px 30px;
-        background-color: #ff6347;
-        color: white;
-        text-decoration: none;
-        font-size: 1.2em;
-        border-radius: 50px;
-        transition: background-color 0.3s;
-    }
-
-    .btn-banner:hover {
-        background-color: #e5533d;
-    }
-
     body {
         font-family: 'Arial', sans-serif;
         background-color: #f4f4f9;
@@ -111,14 +58,6 @@
 <body>
 <div th:replace="~{base :: header}"></div>
 
-<section class="banner">
-    <div class="banner-content">
-        <h2>Descubra os brinquedos mais legais!</h2>
-        <p>Explore nossa coleção e encontre o presente perfeito.</p>
-        <a href="/brinquedo" class="btn-banner">Ver Coleção</a>
-    </div>
-</section>
-
 <section class="cards-container">
     <div th:each="brinquedo : ${brinquedos}" class="card">
         <img th:src="@{${brinquedo.imagemUrl}}" alt="Imagem do brinquedo" class="card-image">
@@ -128,5 +67,6 @@
         <p><strong>Preço:</strong> R$ <span th:text="${brinquedo.preco}">Preço</span></p>
     </div>
 </section>
+
 </body>
 </html>
