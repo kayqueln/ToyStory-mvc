@@ -17,7 +17,7 @@ O Deploy foi feito utilizando o serviço “EC2" da Amazon Web Services (AWS).
 
 Esta é uma aplicação de uma **Loja de Brinquedos** desenvolvida utilizando **Spring MVC**. A aplicação permite que usuários e administradores interajam com o sistema de acordo com seus papéis, fornecendo funcionalidades de autenticação e autorização. 
 
-- **Usuário comum**: pode se cadastrar e verificar últimos lançamentos.
+- **Usuário comum**: pode se cadastrar e verificar últimos lançamentos e suas compras.
 - **Administrador**: possui acesso a um CRUD completo para gerenciar os brinquedos disponíveis na loja.
 
 O projeto foi implementado utilizando **IntelliJ IDEA** como IDE principal, e o desenvolvimento é totalmente containerizado com **Docker**. O banco de dados utilizado é o **PostgreSQL**, que é orquestrado por um arquivo **docker-compose** para facilitar o setup e deploy.
